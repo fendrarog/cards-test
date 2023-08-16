@@ -38,6 +38,14 @@ export default {
           "0%": { opacity: "1", transform: "scale(1)" },
           "100%": { opacity: "0", transform: "scale(0)" },
         },
+        fromshadow: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "0.9" },
+        },
+        toshadow: {
+          "0%": { opacity: "0.9" },
+          "100%": { opacity: "0" },
+        },
       },
       animation: {
         wiggle: "wiggle 0.5s ease-out 1",
@@ -45,6 +53,8 @@ export default {
         disappear: "disappear 0.3s ease-out 1",
         fliesout: "fliesout 0.3s ease-out 1",
         fliesin: "fliesin 0.3s ease-out 1",
+        fromshadow: "fromshadow 0.3s ease-out 1",
+        toshadow: "toshadow 0.3s ease-out 1",
       },
     },
   },
