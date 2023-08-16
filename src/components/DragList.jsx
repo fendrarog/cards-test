@@ -1,12 +1,22 @@
 import useDrag from "../hooks/useDrag";
 import CardForm from "./CardForm";
 import Card from "./Card";
+import { useState } from "react";
 
 const DragList = ({ items, setItems, widthValue }) => {
   const [dragProps, dragStartHandler, dropHandler, draggedItem] = useDrag(
     items,
     setItems
   );
+
+  const [pendingAddCard, setPendingAddCard] = useState({
+    isPanding: false,
+    cardId: null,
+  });
+  const [pendingDeleteCard, setPendingDeleteCard] = useState({
+    isPanding: false,
+    cardId: null,
+  });
 
   return (
     <>
@@ -23,10 +33,19 @@ const DragList = ({ items, setItems, widthValue }) => {
             dropHandler={dropHandler}
             draggedItem={draggedItem}
             widthValue={widthValue}
+            pendingAddCard={pendingAddCard}
+            setPendingAddCard={setPendingAddCard}
+            pendingDeleteCard={pendingDeleteCard}
+            setPendingDeleteCard={setPendingDeleteCard}
           />
         ))}
 
-      <CardForm items={items} setItems={setItems} widthValue={widthValue} />
+      <CardForm
+        items={items}
+        setItems={setItems}
+        widthValue={widthValue}
+        setPendingAddCard={setPendingAddCard}
+      />
     </>
   );
 };

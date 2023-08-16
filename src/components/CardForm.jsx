@@ -2,23 +2,28 @@ import { v4 as uuidv4 } from "uuid";
 import useInput from "../hooks/useInput";
 import { IconAdd } from "./Icons";
 
-const CardForm = ({ items, setItems, widthValue }) => {
+const CardForm = ({ items, setItems, widthValue, setPendingAddCard }) => {
   const [titleProps, resetTitle] = useInput("", "text");
-
   const [descriptionProps, resetDescription] = useInput("", "text");
 
   const submit = (e) => {
     e.preventDefault();
-    setItems([
-      ...items,
-      {
-        id: uuidv4(),
-        order: items.length + 1,
-        title: titleProps.value,
-        description: descriptionProps.value,
-        children: [],
-      },
-    ]);
+
+    const newCard = {
+      id: uuidv4(),
+      order: items.length + 1,
+      title: titleProps.value,
+      description: descriptionProps.value,
+      children: [],
+    };
+
+    setPendingAddCard({ isPanding: true, cardId: newCard.id });
+    setTimeout(
+      () => setPendingAddCard({ isPanding: false, cardId: null }),
+      300
+    );
+
+    setItems([...items, { ...newCard }]);
     resetTitle();
     resetDescription();
   };
