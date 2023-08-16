@@ -16,6 +16,8 @@ const Card = ({
   setPendingAddCard,
   pendingDeleteCard,
   setPendingDeleteCard,
+  pendingHidePopup,
+  setPendingHidePopup,
 }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,7 +26,7 @@ const Card = ({
     isEdit: false,
     id: null,
   });
-  const [modalCard, setModalCard] = useState({ isShow: false, props: null });
+  const [popup, setPopup] = useState({ isShow: false, props: null });
 
   const deleteCard = (id) => {
     setPendingDeleteCard({ isPanding: true, cardId: id });
@@ -123,10 +125,11 @@ const Card = ({
                 item={item}
                 items={items}
                 setItems={setItems}
-                modalCard={modalCard}
-                setModalCard={setModalCard}
+                popup={popup}
+                setPopup={setPopup}
                 draggedItem={draggedItem}
                 setPendingAddCard={setPendingAddCard}
+                setPendingHidePopup={setPendingHidePopup}
               />
             ))}
           </div>
@@ -143,7 +146,12 @@ const Card = ({
         </button>
       </div>
 
-      <PopupCardInfo modalCard={modalCard} draggedItem={draggedItem} />
+      <PopupCardInfo
+        popup={popup}
+        draggedItem={draggedItem}
+        pendingHidePopup={pendingHidePopup}
+        setPendingHidePopup={setPendingHidePopup}
+      />
     </>
   );
 };

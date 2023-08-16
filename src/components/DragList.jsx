@@ -17,6 +17,10 @@ const DragList = ({ items, setItems, widthValue }) => {
     isPanding: false,
     cardId: null,
   });
+  const [pendingHidePopup, setPendingHidePopup] = useState({
+    isPanding: false,
+    cardId: null,
+  });
 
   return (
     <>
@@ -37,6 +41,8 @@ const DragList = ({ items, setItems, widthValue }) => {
             setPendingAddCard={setPendingAddCard}
             pendingDeleteCard={pendingDeleteCard}
             setPendingDeleteCard={setPendingDeleteCard}
+            pendingHidePopup={pendingHidePopup}
+            setPendingHidePopup={setPendingHidePopup}
           />
         ))}
 

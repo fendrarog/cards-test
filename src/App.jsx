@@ -66,7 +66,7 @@ function App() {
       <div
         className={`fixed px-5 py-24 bg-white h-screen w-72 top-0 ${
           isActiveSettings ? "right-0" : "-right-72"
-        } transition-[right] z-40 opacity-95 shadow-2xl`}
+        } transition-[right] duration-300 z-40 shadow-2xl`}
       >
         <input {...widthProps} min="2" max="12" />{" "}
         <div className="inline-flex gap-2 ml-2">
