@@ -1,4 +1,6 @@
-const PopupCardInfo = ({ modalCard }) => {
+const PopupCardInfo = ({ modalCard, draggedItem }) => {
+  if (draggedItem) return null;
+
   return (
     <div
       className={`${

@@ -1,15 +1,16 @@
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
-  background-color: #f9f9fd;
+  background-color: #fce7f3;
   border-radius: 10px;
+  visibility: hidden;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #fca5a5;
+  background-color: #fca5a5c8;
   background-image: -webkit-linear-gradient(
     45deg,
     rgba(255, 255, 255, 0.25) 25%,
@@ -21,4 +22,18 @@
     transparent
   );
   border-radius: 10px;
+  visibility: hidden;
+}
+
+.card .inner-card:active::-webkit-scrollbar-track,
+.card .inner-card:focus::-webkit-scrollbar-track,
+.card .inner-card:hover::-webkit-scrollbar-track,
+.card .inner-card:active::-webkit-scrollbar-thumb,
+.card .inner-card:focus::-webkit-scrollbar-thumb,
+.card .inner-card:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+::-webkit-scrollbar-corner {
+  visibility: hidden;
 }

@@ -20,6 +20,7 @@ const useDrag = (items, setItems) => {
     card.style.boxShadow = "none";
     card.style.transform = "scale(1)";
     card.style.visibility = "visible";
+
     setDraggedItem(null);
   };
 

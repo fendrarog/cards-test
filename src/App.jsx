@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import useInput from "./hooks/useInput";
 import DragList from "./components/DragList";
-import { IconClose, IconSettings } from "./components/Icons";
+import { IconClose, IconColumns, IconSettings } from "./components/Icons";
 
 function App() {
   const [cards, setCards] = useState([
@@ -51,14 +51,14 @@ function App() {
     },
   ]);
 
-  const [widthProps] = useInput("6", "range");
+  const [widthProps] = useInput("4", "range");
   const [isActiveSettings, setIsActiveSettings] = useState(false);
 
   return (
     <>
       <button
         onClick={() => setIsActiveSettings((val) => !val)}
-        className="fixed bottom-4 right-4 bg-red-200 p-2 rounded-full text-red-800 drop-shadow-md z-50 hover:drop-shadow-xl"
+        className="fixed bottom-4 right-4 bg-red-200 p-2 rounded-full text-red-800 z-50 shadow-round-sm hover:shadow-round-xl hover:rotate-90 duration-300"
       >
         <IconSettings size={40} />
       </button>
@@ -69,10 +69,12 @@ function App() {
         } transition-[right] z-40 opacity-95 shadow-2xl`}
       >
         <input {...widthProps} min="2" max="12" />{" "}
-        <span>{widthProps.value} колонок</span>
+        <div className="inline-flex gap-2 ml-2">
+          {widthProps.value} <IconColumns size={24} />
+        </div>
         <button
           onClick={() => setIsActiveSettings(false)}
-          className="absolute top-5 left-5 p-2 bg-gray-100 drop-shadow-md rounded-full text-red-900 hover:drop-shadow-xl"
+          className="absolute top-5 left-5 p-2 bg-gray-100 shadow-md rounded-full text-red-900 hover:shadow-lg duration-300"
         >
           <IconClose size={24} />
         </button>
@@ -81,6 +83,7 @@ function App() {
       {isActiveSettings ? (
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-half-transparent z-20"></div>
       ) : null}
+
       <div className="flex flex-wrap gap-3 w-full">
         <DragList
           items={cards}
