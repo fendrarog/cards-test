@@ -43,7 +43,7 @@ const ChildCard = ({
         props: null,
       });
       setPendingHidePopup({ isPanding: false, cardId: null });
-    }, 300);
+    }, 290);
   };
 
   return (
