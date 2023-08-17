@@ -32,7 +32,7 @@ const PopupCardInfo = ({ popup, draggedItem, pendingHidePopup }) => {
           : null}
       </div>
 
-      <div className="absolute -top-6 left-[90px] w-0 h-0 border-l-[24px] border-r-[24px] border-b-[24px] border-pink-100 border-x-transparent"></div>
+      <div className="absolute -top-6 left-[90px] w-0 h-0 border-l-[24px] border-r-[24px] border-b-[24px] border-red-100 border-x-transparent"></div>
     </div>
   );
 };

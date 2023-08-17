@@ -51,7 +51,7 @@ function App() {
     },
   ]);
 
-  const [widthProps] = useInput("4", "range");
+  const [widthProps] = useInput("6", "range");
   const [isActiveSettings, setIsActiveSettings] = useState(false);
 
   return (

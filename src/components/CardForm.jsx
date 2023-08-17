@@ -47,7 +47,7 @@ const CardForm = ({ items, setItems, widthValue, setPendingAddCard }) => {
           className="block mb-3 border-b bg-transparent text-zinc-50 placeholder:text-zinc-50 outline-none"
         />
 
-        <button className="bg-green-600 p-1 rounded-full text-zinc-50 hover:rotate-90 duration-300">
+        <button className="bg-green-600 p-1 rounded-full text-zinc-50 hover:rotate-90 active:scale-90 duration-300">
           <IconAdd size={40} />
         </button>
       </form>

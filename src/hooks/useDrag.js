@@ -31,7 +31,7 @@ const useDrag = (items, setItems) => {
     card.style.background = "#fbcfe8";
     card.style.boxShadow = "none";
     card.style.transform = "scale(1)";
-    card.style.visibility = "visible";
+
     setDragOverItem(null);
     setIsInnerCardActive(false);
   };

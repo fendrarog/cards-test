@@ -1,7 +1,8 @@
 import { IconDelete } from "./Icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopupCardInfo from "./PopupCardInfo";
 import ChildCard from "./ChildCard";
+import PopupWarning from "./PopupWarning";
 
 const Card = ({
   items,
@@ -27,8 +28,22 @@ const Card = ({
     id: null,
   });
   const [popup, setPopup] = useState({ isShow: false, props: null });
+  const [warning, setWarning] = useState({ isShow: false, props: null });
 
-  const deleteCard = (id) => {
+  const deleteCard = (e, id) => {
+    if (!warning.isShow) {
+      const containCard = items.find(
+        (card) => card.id === id && card?.children.length > 0
+      );
+      const x = e.clientX;
+      const y = e.clientY;
+      console.log(containCard);
+      if (containCard) {
+        setWarning({ isShow: true, props: { ...containCard, x, y } });
+        return;
+      }
+    }
+
     setPendingDeleteCard({ isPanding: true, cardId: id });
     setTimeout(() => {
       setItems(
@@ -42,6 +57,11 @@ const Card = ({
       });
     }, 300);
   };
+
+  useEffect(() => {
+    if (popup.isShow) setPopup({ isShow: false, props: null });
+    if (warning.isShow) setWarning({ isShow: false, props: null });
+  }, [item.order]);
 
   return (
     <>
@@ -139,9 +159,17 @@ const Card = ({
             draggedItem?.id === item.id
               ? "duration-0 delay-0"
               : "duration-300 delay-150"
-          } absolute flex items-center justify-center shadow-md hover:shadow-lg p-1 w-7 h-7 rounded-full top-2 right-2 bg-pink-300 scale-0 hover:bg-pink-400 group-hover/item:scale-100`}
-          onClick={() => deleteCard(item.id)}
+          } absolute flex items-center justify-center shadow-md hover:shadow-lg p-1 w-7 h-7 rounded-full top-2 right-2  scale-0 ${
+            warning?.isShow
+              ? "scale-100 bg-pink-400"
+              : "group-hover/item:scale-100 bg-pink-300 hover:bg-pink-400"
+          }`}
+          onClick={(e) => deleteCard(e, item.id)}
+          disabled={warning?.isShow}
         >
+          {warning?.isShow ? (
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+          ) : null}
           <IconDelete />
         </button>
       </div>
@@ -151,6 +179,13 @@ const Card = ({
         draggedItem={draggedItem}
         pendingHidePopup={pendingHidePopup}
         setPendingHidePopup={setPendingHidePopup}
+        item={item}
+      />
+      <PopupWarning
+        warning={warning}
+        setWarning={setWarning}
+        draggedItem={draggedItem}
+        deleteCard={deleteCard}
       />
     </>
   );
