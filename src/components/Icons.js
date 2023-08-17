@@ -5,6 +5,7 @@ import {
   AiOutlineDelete,
   AiOutlinePlusCircle,
   AiOutlineCloseCircle,
+  AiOutlineCheckCircle,
 } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { GiAncientColumns } from "react-icons/gi";
@@ -15,5 +16,6 @@ export const IconUpload = AiOutlineUpload;
 export const IconDelete = AiOutlineDelete;
 export const IconAdd = AiOutlinePlusCircle;
 export const IconClose = AiOutlineCloseCircle;
+export const IconCheck = AiOutlineCheckCircle;
 export const IconSettings = FiSettings;
 export const IconColumns = GiAncientColumns;
